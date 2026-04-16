@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DogTI - Style A: 复古游戏机风</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; image-rendering: pixelated; }
+
+  body {
+    background: #1a1a2e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Press Start 2P', monospace;
+    overflow-x: hidden;
+  }
+
+  /* 像素星星背景 */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, #fff 0%, transparent 100%),
+      radial-gradient(1px 1px at 30% 60%, #fff 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 10%, #fff 0%, transparent 100%),
+      radial-gradient(1px 1px at 80% 40%, #fff 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 80%, #fff 0%, transparent 100%),
+      radial-gradient(2px 2px at 15% 75%, #ffd700 0%, transparent 100%),
+      radial-gradient(2px 2px at 55% 85%, #ffd700 0%, transparent 100%),
+      radial-gradient(1px 1px at 45% 35%, #fff 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 65%, #fff 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .game-container {
+    position: relative;
+    z-index: 1;
+    width: 360px;
+    max-width: 95vw;
+  }
+
+  /* GBA 外框 */
+  .gba-frame {
+    background: #2d2d44;
+    border: 4px solid #6c63ff;
+    box-shadow:
+      0 0 0 4px #1a1a2e,
+      0 0 0 8px #6c63ff,
+      8px 8px 0 8px rgba(0,0,0,0.5);
+    border-radius: 4px;
+    padding: 16px;
+  }
+
+  /* 屏幕区域 */
+  .screen {
+    background: #0f0f23;
+    border: 4px solid #4a4a6a;
+    box-shadow: inset 0 0 20px rgba(108,99,255,0.2);
+    padding: 20px 16px;
+    min-height: 480px;
+    position: relative;
+  }
+
+  /* 扫描线效果 */
+  .screen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.15) 2px,
+      rgba(0,0,0,0.15) 4px
+    );
+    pointer-events: none;
+  }
+
+  /* 标题页 */
+  .title-screen {
+    text-align: center;
+    padding: 8px 0;
+  }
+
+  .game-title {
+    color: #ffd700;
+    font-size: 28px;
+    letter-spacing: 4px;
+    text-shadow: 4px 4px 0 #ff6b00, 8px 8px 0 rgba(0,0,0,0.5);
+    margin-bottom: 4px;
+  }
+
+  .game-subtitle {
+    color: #ff6b9d;
+    font-size: 7px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+
+  /* 像素狗 SVG */
+  .pixel-dog {
+    margin: 0 auto 16px;
+    display: block;
+  }
+
+  /* 对话框 */
+  .dialog-box {
+    background: #0a0a1a;
+    border: 3px solid #ffd700;
+    padding: 10px 12px;
+    margin: 12px 0;
+    position: relative;
+  }
+
+  .dialog-box::before {
+    content: '▶';
+    color: #ffd700;
+    font-size: 8px;
+    position: absolute;
+    bottom: 6px;
+    right: 8px;
+    animation: blink 1s infinite;
+  }
+
+  .dialog-text {
+    color: #e8e8ff;
+    font-size: 7px;
+    line-height: 2;
+  }
+
+  .dialog-speaker {
+    color: #6c63ff;
+    font-size: 6px;
+    margin-bottom: 4px;
+  }
+
+  /* 进度条 */
+  .progress-area {
+    margin: 12px 0;
+  }
+
+  .progress-label {
+    color: #888;
+    font-size: 6px;
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .progress-bar {
+    height: 12px;
+    background: #1a1a2e;
+    border: 2px solid #4a4a6a;
+    position: relative;
+  }
+
+  .progress-fill {
+    height: 100%;
+    width: 30%;
+    background: linear-gradient(90deg, #6c63ff, #ff6b9d);
+    position: relative;
+    transition: width 0.3s;
+  }
+
+  .progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    right: 4px;
+    height: 3px;
+    background: rgba(255,255,255,0.4);
+  }
+
+  /* 问题区域 */
+  .question-box {
+    margin: 10px 0;
+  }
+
+  .question-num {
+    color: #ff6b9d;
+    font-size: 6px;
+    margin-bottom: 6px;
+  }
+
+  .question-text {
+    color: #ffd700;
+    font-size: 8px;
+    line-height: 1.8;
+    margin-bottom: 12px;
+    background: #0a0a1a;
+    border-left: 3px solid #6c63ff;
+    padding: 8px;
+  }
+
+  /* 选项按钮 */
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .option-btn {
+    background: #1a1a2e;
+    border: 2px solid #4a4a6a;
+    color: #e8e8ff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 6px;
+    padding: 10px 8px;
+    text-align: left;
+    cursor: pointer;
+    line-height: 1.6;
+    transition: all 0.1s;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .option-btn::before {
+    content: attr(data-key);
+    color: #6c63ff;
+    min-width: 16px;
+  }
+
+  .option-btn:hover, .option-btn.active {
+    background: #2d2d44;
+    border-color: #ffd700;
+    color: #ffd700;
+    box-shadow: 4px 4px 0 #ff6b00;
+    transform: translate(-2px, -2px);
+  }
+
+  .option-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0 0 0 #ff6b00;
+  }
+
+  /* 底部按钮行 */
+  .btn-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .pixel-btn {
+    background: #6c63ff;
+    border: none;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 7px;
+    padding: 10px 16px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 #3a3280;
+    transition: all 0.1s;
+  }
+
+  .pixel-btn:hover {
+    background: #8b84ff;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 #3a3280;
+  }
+
+  .pixel-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #3a3280;
+  }
+
+  .pixel-btn.red {
+    background: #ff4757;
+    box-shadow: 4px 4px 0 #8b0000;
+  }
+
+  .pixel-btn.yellow {
+    background: #ffa502;
+    box-shadow: 4px 4px 0 #7a4f00;
+    color: #1a1a2e;
+  }
+
+  /* GBA 按钮装饰 */
+  .gba-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    padding: 0 8px;
+  }
+
+  .dpad {
+    position: relative;
+    width: 48px;
+    height: 48px;
+  }
+
+  .dpad-h, .dpad-v {
+    position: absolute;
+    background: #4a4a6a;
+    border: 2px solid #2d2d44;
+  }
+
+  .dpad-h {
+    width: 100%;
+    height: 33%;
+    top: 33%;
+    left: 0;
+  }
+
+  .dpad-v {
+    width: 33%;
+    height: 100%;
+    top: 0;
+    left: 33%;
+  }
+
+  .ab-buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .circle-btn {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .circle-btn.b { background: #ff4757; }
+  .circle-btn.a { background: #ffa502; }
+
+  /* 闪烁动画 */
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+
+  .float { animation: float 2s ease-in-out infinite; }
+
+  /* 标签 */
+  .badge {
+    display: inline-block;
+    background: #ff6b9d;
+    color: #fff;
+    font-size: 5px;
+    padding: 2px 6px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  .screen-glow {
+    color: #6c63ff;
+    font-size: 5px;
+    text-align: center;
+    margin-bottom: 8px;
+    opacity: 0.7;
+  }
+</style>
+</head>
+<body>
+
+<div class="game-container">
+  <div class="gba-frame">
+    <div class="screen-glow">★ DOGTI SYSTEM ★</div>
+    <div class="screen">
+
+      <!-- 标题页 -->
+      <div class="title-screen">
+        <div class="game-title">DOG<span style="color:#ff6b9d">TI</span></div>
+        <div class="game-subtitle">——— PERSONALITY TEST ———</div>
+
+        <!-- 像素柴犬 -->
+        <svg class="pixel-dog float" width="80" height="80" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+          <!-- 柴犬像素图 -->
+          <rect x="6" y="1" width="4" height="2" fill="#c47a2a"/>
+          <rect x="5" y="2" width="6" height="3" fill="#c47a2a"/>
+          <rect x="4" y="3" width="8" height="4" fill="#d4923a"/>
+          <rect x="5" y="4" width="6" height="2" fill="#e8b060"/>
+          <!-- 耳朵 -->
+          <rect x="4" y="2" width="2" height="2" fill="#8b5e1a"/>
+          <rect x="10" y="2" width="2" height="2" fill="#8b5e1a"/>
+          <!-- 眼睛 -->
+          <rect x="6" y="4" width="1" height="1" fill="#1a1a1a"/>
+          <rect x="9" y="4" width="1" height="1" fill="#1a1a1a"/>
+          <!-- 鼻子 -->
+          <rect x="7" y="6" width="2" height="1" fill="#1a1a1a"/>
+          <!-- 身体 -->
+          <rect x="5" y="7" width="6" height="5" fill="#c47a2a"/>
+          <rect x="5" y="8" width="6" height="2" fill="#d4923a"/>
+          <rect x="6" y="7" width="4" height="5" fill="#e8b060"/>
+          <!-- 腿 -->
+          <rect x="5" y="12" width="2" height="3" fill="#c47a2a"/>
+          <rect x="9" y="12" width="2" height="3" fill="#c47a2a"/>
+          <!-- 尾巴 -->
+          <rect x="11" y="7" width="2" height="2" fill="#c47a2a"/>
+          <rect x="12" y="6" width="2" height="2" fill="#c47a2a"/>
+          <rect x="13" y="5" width="1" height="2" fill="#8b5e1a"/>
+        </svg>
+
+        <div class="dialog-box">
+          <div class="dialog-speaker">DOGTI_SYSTEM:</div>
+          <div class="dialog-text">你到底是哪种<span style="color:#ffd700">抽象</span>的狗？<br>10道题，2分钟，<br>测出你最真实的<span style="color:#ff6b9d">狗狗人格</span>。</div>
+        </div>
+
+        <div style="color:#888; font-size:5px; margin: 8px 0; line-height:2;">
+          ⚠ 警告：结果可能过于<span style="color:#ffd700">真实</span><br>
+          ⚠ 本测试不对<span style="color:#ff6b9d">精神损失</span>负责
+        </div>
+
+        <div class="btn-row">
+          <button class="pixel-btn yellow">▶ 开始测试</button>
+        </div>
+      </div>
+
+      <hr style="border:1px solid #2d2d44; margin: 16px 0;">
+
+      <!-- 问题页预览 -->
+      <div class="question-box">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <div class="question-num">QUESTION 3/10</div>
+          <div class="badge">+100 EXP</div>
+        </div>
+
+        <div class="progress-area">
+          <div class="progress-label">
+            <span>PROGRESS</span>
+            <span style="color:#6c63ff">30%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="question-text">
+          朋友圈出现了你不认识的<br>
+          陌生人，你的反应是？
+        </div>
+
+        <div class="options">
+          <button class="option-btn" data-key="A">疯狂翻主页+截图分享给朋友</button>
+          <button class="option-btn active" data-key="B">点个赞，表示我知道你的存在</button>
+          <button class="option-btn" data-key="C">屏蔽。不认识的人不配</button>
+          <button class="option-btn" data-key="D">已读不回，继续划手机</button>
+        </div>
+
+        <div class="btn-row">
+          <button class="pixel-btn">◀ 上一题</button>
+          <button class="pixel-btn yellow">下一题 ▶</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- GBA 控制器装饰 -->
+    <div class="gba-controls">
+      <div class="dpad">
+        <div class="dpad-h"></div>
+        <div class="dpad-v"></div>
+      </div>
+      <div style="text-align:center;">
+        <div style="color:#4a4a6a; font-size:5px;">SELECT · START</div>
+        <div style="display:flex; gap:8px; margin-top:4px;">
+          <div style="width:20px;height:6px;background:#4a4a6a;"></div>
+          <div style="width:20px;height:6px;background:#4a4a6a;"></div>
+        </div>
+      </div>
+      <div class="ab-buttons">
+        <div class="circle-btn b">B</div>
+        <div class="circle-btn a">A</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
