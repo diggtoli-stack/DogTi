@@ -37,27 +37,7 @@
     background: #fff;
     overflow: hidden;
     position: relative;
-  }
-
-  /* 状态栏 */
-  .statusbar {
-    height: 44px;
-    padding: 12px 20px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--black);
-    position: relative;
-    z-index: 2;
-  }
-
-  .statusbar-right {
-    display: flex;
-    gap: 5px;
-    align-items: center;
-    font-size: 12px;
+    padding-top: 10px;
   }
 
   /* 像素大标题 */
@@ -361,15 +341,15 @@
   }
 
   .result-hero {
-    padding: 40px 28px 24px;
+    padding: 40px 28px 34px;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
   .result-dog-frame {
-    width: 120px;
-    height: 120px;
+    width: 144px;
+    height: 144px;
     background: var(--gray-1);
     border-radius: 30px;
     display: flex;
@@ -537,16 +517,6 @@
 
 <!-- ═══ 封面页 ═══ -->
 <div class="page active" id="page-home">
-
-  <!-- 状态栏 -->
-  <div class="statusbar">
-    <span>13:40</span>
-    <div class="statusbar-right">
-      <svg width="16" height="12" viewBox="0 0 16 12" fill="#111"><rect x="0" y="4" width="3" height="8"/><rect x="4" y="2" width="3" height="10"/><rect x="8" y="0" width="3" height="12"/></svg>
-      <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="#111" stroke-width="1.5"><path d="M1 4 Q8 -2 15 4"/><path d="M3.5 6.5 Q8 2 12.5 6.5"/><circle cx="8" cy="9.5" r="1.5" fill="#111"/></svg>
-      <svg width="24" height="12" viewBox="0 0 24 12"><rect x="0" y="1" width="20" height="10" rx="2" stroke="#111" stroke-width="1.5" fill="none"/><rect x="20" y="4" width="2" height="4" rx="1" fill="#111"/><rect x="1.5" y="2.5" width="13" height="7" rx="1" fill="#111"/></svg>
-    </div>
-  </div>
 
   <!-- 像素大标题 -->
   <div class="home-pixel-title">
@@ -962,22 +932,22 @@ const results = {
 // 像素狗图片（16种，使用本地PNG文件）
 // ──────────────────────────────────────────────
 const dogSVGs = {
-  doberman: `<img src="assets/杜宾.png" style="width:108px;height:108px;image-rendering:pixelated;object-fit:contain">`,
-  bordercollie: `<img src="assets/边牧.png" style="width:108px;height:108px;image-rendering:pixelated;object-fit:contain">`,
-  goldenretriever: `<img src="assets/金毛.png" style="width:108px;height:108px;image-rendering:pixelated;object-fit:contain">`,
-  beagle: `<img src="assets/比格.png" style="width:108px;height:108px;image-rendering:pixelated;object-fit:contain">`,
-  germanshepherd: `<img src="assets/德牧.png" style="width:108px;height:108px;image-rendering:pixelated;object-fit:contain">`,
-  husky: `<img src="assets/哈士奇.png" style="width:108px;height:108px;image-rendering:pixelated;object-fit:contain">`,
-  labrador: `<img src="assets/拉布拉多.png" style="width:108px;height:108px;image-rendering:pixelated;object-fit:contain">`,
-  poodle: `<img src="assets/泰迪.png" style="width:108px;height:108px;image-rendering:pixelated;object-fit:contain">`,
-  shiba: `<img src="assets/柴犬.png" style="width:108px;height:108px;image-rendering:pixelated;object-fit:contain">`,
-  alaskan: `<img src="assets/阿拉斯加.png" style="width:108px;height:108px;image-rendering:pixelated;object-fit:contain">`,
-  samoyed: `<img src="assets/萨摩耶.png" style="width:108px;height:108px;image-rendering:pixelated;object-fit:contain">`,
-  maltese: `<img src="assets/马尔济斯.png" style="width:108px;height:108px;image-rendering:pixelated;object-fit:contain">`,
-  corgi: `<img src="assets/柯基.png" style="width:108px;height:108px;image-rendering:pixelated;object-fit:contain">`,
-  chow: `<img src="assets/松狮.png" style="width:108px;height:108px;image-rendering:pixelated;object-fit:contain">`,
-  bichon: `<img src="assets/比熊.png" style="width:108px;height:108px;image-rendering:pixelated;object-fit:contain">`,
-  dachshund: `<img src="assets/腊肠.png" style="width:108px;height:108px;image-rendering:pixelated;object-fit:contain">`
+  doberman: `<img src="assets/杜宾.png" style="width:130px;height:130px;image-rendering:pixelated;object-fit:contain">`,
+  bordercollie: `<img src="assets/边牧.png" style="width:130px;height:130px;image-rendering:pixelated;object-fit:contain">`,
+  goldenretriever: `<img src="assets/金毛.png" style="width:130px;height:130px;image-rendering:pixelated;object-fit:contain">`,
+  beagle: `<img src="assets/比格.png" style="width:130px;height:130px;image-rendering:pixelated;object-fit:contain">`,
+  germanshepherd: `<img src="assets/德牧.png" style="width:130px;height:130px;image-rendering:pixelated;object-fit:contain">`,
+  husky: `<img src="assets/哈士奇.png" style="width:130px;height:130px;image-rendering:pixelated;object-fit:contain">`,
+  labrador: `<img src="assets/拉布拉多.png" style="width:130px;height:130px;image-rendering:pixelated;object-fit:contain">`,
+  poodle: `<img src="assets/泰迪.png" style="width:130px;height:130px;image-rendering:pixelated;object-fit:contain">`,
+  shiba: `<img src="assets/柴犬.png" style="width:130px;height:130px;image-rendering:pixelated;object-fit:contain">`,
+  alaskan: `<img src="assets/阿拉斯加.png" style="width:130px;height:130px;image-rendering:pixelated;object-fit:contain">`,
+  samoyed: `<img src="assets/萨摩耶.png" style="width:130px;height:130px;image-rendering:pixelated;object-fit:contain">`,
+  maltese: `<img src="assets/马尔济斯.png" style="width:130px;height:130px;image-rendering:pixelated;object-fit:contain">`,
+  corgi: `<img src="assets/柯基.png" style="width:130px;height:130px;image-rendering:pixelated;object-fit:contain">`,
+  chow: `<img src="assets/松狮.png" style="width:130px;height:130px;image-rendering:pixelated;object-fit:contain">`,
+  bichon: `<img src="assets/比熊.png" style="width:130px;height:130px;image-rendering:pixelated;object-fit:contain">`,
+  dachshund: `<img src="assets/腊肠.png" style="width:130px;height:130px;image-rendering:pixelated;object-fit:contain">`
 };
 
 // ──────────────────────────────────────────────
@@ -1132,11 +1102,22 @@ function calcResult() {
   return typeMap[type] || "假装冷静的柴犬";
 }
 
+function formatDogName(name) {
+  const breeds = ['拉布拉多','马尔济斯','阿拉斯加','哈士奇','萨摩耶','杜宾','边牧','金毛','比格','德牧','泰迪','柴犬','柯基','松狮','比熊','腊肠'];
+  for (const breed of breeds) {
+    if (name.endsWith(breed)) {
+      const prefix = name.slice(0, name.length - breed.length);
+      return prefix + '<br>' + breed;
+    }
+  }
+  return name;
+}
+
 function showResult() {
   const typeName = calcResult();
   const data = results[typeName];
 
-  document.getElementById('result-type').textContent = typeName;
+  document.getElementById('result-type').innerHTML = formatDogName(typeName);
   document.getElementById('result-subname').textContent = data.subname;
   document.getElementById('result-quote-text').textContent = data.quote;
   document.getElementById('result-desc').textContent = data.desc;
