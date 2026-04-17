@@ -73,6 +73,14 @@
 
 ---
 
+## 部署
+
+- **平台：** Cloudflare Pages（主用）→ dogti.pages.dev
+- **流程：** 用户确认OK → 推送 GitHub → Cloudflare 自动重新部署
+- Vercel（dog-ti.vercel.app）也连着同一仓库，但不再主用
+
+---
+
 ## 用户偏好（重要）
 
 - **只改文案时，不动设计和结构**
