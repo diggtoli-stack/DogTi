@@ -44,32 +44,45 @@
 
 ### 首页关键实现
 - 动物滚动带：CSS `@keyframes`，第1、3行向左，第2行向右
-- 像素动物：内联 SVG，`image-rendering: pixelated`
+- 像素动物：`<img src="assets/犬种.png">` PNG 文件，`image-rendering: pixelated`
+- 标题：`assets/DOGTI标题.png`，文案：`assets/文案.png`
 
 ---
 
 ## 测试逻辑
 
-- **10道题**，每个选项标记 MBTI 维度（E/I、S/N、T/F、J/P）
-- `calcResult()` 统计各维度计数，用4个布尔值分支得出结果
+- **12道题**，每个选项标记 MBTI 维度（E/I、S/N、T/F、J/P）
+- 每题3个选项（A/B/C），选项覆盖不同维度
+- `calcResult()` 统计各维度计数，4个维度各取多数，组合成16种 MBTI 类型
+- 详细题目、维度映射、结果数据见 → `QUIZ-LOGIC.md`
 
-### 6种结果（全部为"XX的柴犬"格式）
+### 16种结果（格式：XX的犬种）
 
-| 结果名 | 副标题 | SVG key |
-|--------|--------|---------|
-| 假装冷静的柴犬 | 独居哲学家 | `philosopher` |
-| 社恐但好奇的柴犬 | 远程观察员 | `curious` |
-| 混乱中立的柴犬 | 随机事件体 | `chaotic` |
-| 假装躺平的柴犬 | 看起来很稳实则内卷 | `anxious` |
-| 过分理性的柴犬 | 逻辑处理器 | `logical` |
-| 社交满能量的柴犬 | 充电宝本人 | `social` |
+| MBTI | 结果名 | 犬种 |
+|------|--------|------|
+| ENTJ | 气场先到三步的杜宾 | doberman |
+| ENTP | 把所有人都绕晕了的边牧 | bordercollie |
+| ENFJ | 比你更担心你的金毛 | goldenretriever |
+| ENFP | 什么都想闻一口的比格 | beagle |
+| ESTJ | 把所有人都管住了的德牧 | germanshepherd |
+| ESTP | 说好散步结果跑丢的哈士奇 | husky |
+| ESFJ | 拒绝不了任何人的拉布拉多 | labrador |
+| ESFP | 出门必须好看的泰迪 | poodle |
+| INTJ | 假装冷静的柴犬 | shiba |
+| INTP | 想到一半就忘了的阿拉斯加 | alaskan |
+| INFJ | 永远在笑但只有自己知道为什么的萨摩耶 | samoyed |
+| INFP | 你不懂的马尔济斯 | maltese |
+| ISTJ | 没做完不能睡觉的柯基 | corgi |
+| ISTP | 不需要你担心的松狮 | chow |
+| ISFJ | 记住你不喜欢香菜的比熊 | bichon |
+| ISFP | 急不起来的腊肠 | dachshund |
 
 ---
 
 ## 结果页文案规范
 
-- 标签文字：**「你的狗格是」**（不是"你的狗型是"）
-- 结果格式：`XX的柴犬`
+- 标签文字：**「你的狗格是」**
+- 结果格式：`XX的犬种`（不限柴犬，共16种犬）
 
 ---
 
